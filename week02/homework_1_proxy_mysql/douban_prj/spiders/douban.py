@@ -14,29 +14,6 @@ class DoubanSpider(scrapy.Spider):
             yield scrapy.Request(url=url, callback=self.parse)
 
     def parse(self, response, **kwargs):
-        movies = []
-        # title_txts = []
-        # titles = Selector(response=response).xpath('//*[@id="content"]/div/div[1]/ol/li/div/div/div[1]/a')
-        # for title in titles:
-        #     title_txt = title.xpath('./span/text()').extract_first()
-        #     title_txts.append(title_txt)
-
-
-        # director_txts = []
-        # directors = Selector(response=response).xpath('//*[@id="content"]/div/div[1]/ol/li/div/div[2]/div[2]/p[1]')
-        # for director in directors:
-        #     director_txt = director.xpath('./text()').extract_first().strip()
-        #     director_txt = director_txt.split('主')[0].strip()
-        #     director_txt = director_txt.split(':')[1].strip()
-        #     director_txts.append(director_txt)
-
-
-        # rate_txts = []
-        # rates = Selector(response=response).xpath('//*[@id="content"]/div/div[1]/ol/li/div/div[2]/div[2]/div/span[2]')
-        # for rate in rates:
-        #     rate_txt = rate.xpath('./text()').extract_first().strip()
-        #     rate_txts.append(rate_txt)
-
         ms = Selector(response=response).xpath('//div[@class="info"]')
         for m in ms:
             title = m.xpath('./div[1]/a/span/text()').extract_first()
